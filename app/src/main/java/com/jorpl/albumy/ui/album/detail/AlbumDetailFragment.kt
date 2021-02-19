@@ -1,5 +1,6 @@
 package com.jorpl.albumy.ui.album.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,9 @@ import com.jorpl.albumy.databinding.FragmentAlbumDetailBinding
 import com.jorpl.albumy.ui.album.detail.adapter.AlbumDetailAdapter
 import com.jorpl.albumy.view_model.AlbumViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+
 
 /**
  * A fragment representing a single Album detail screen.
@@ -29,6 +33,7 @@ class AlbumDetailFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +41,12 @@ class AlbumDetailFragment : Fragment() {
 
         _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
         binding.itemAlbumPhotos.layoutManager = GridLayoutManager(binding.itemAlbumPhotos.context, 2)
+        binding.detailToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        (activity as AppCompatActivity?)?.supportActionBar!!.setShowHideAnimationEnabled(false)
+        (activity as AppCompatActivity?)?.supportActionBar!!.hide()
 
         model.select.observe(viewLifecycleOwner) { album ->
             binding.toolbarLayout.title = album.title
