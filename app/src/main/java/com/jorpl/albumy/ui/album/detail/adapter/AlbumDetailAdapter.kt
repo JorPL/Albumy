@@ -1,7 +1,6 @@
 package com.jorpl.albumy.ui.album.detail.adapter
 
 import android.content.Context
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import android.view.LayoutInflater
@@ -39,7 +38,7 @@ class AlbumDetailAdapter internal constructor(context: Context, data: List<Strin
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
 
-        var ivPhoto: ImageView = itemView.findViewById(R.id.photo)
+        var ivPhoto: ImageView = itemView.findViewById(R.id.photo_photo)
 
         override fun onClick(view: View) {
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)

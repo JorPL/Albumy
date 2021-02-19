@@ -22,21 +22,19 @@ import com.jorpl.albumy.view_model.AlbumViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * A Fragment representing a list of Pings. This fragment
- * has different presentations for handset and larger screen devices. On
- * handsets, the fragment presents a list of items, which when touched,
- * lead to a {@link ItemDetailFragment} representing
- * item details. On larger screens, the Navigation controller presents the list of items and
- * item details side-by-side using two vertical panes.
+ * A Fragment representing a list of albums. On
+ * handsets, the fragment presents a list of albums, which when touched,
+ * lead to a {@link AlbumDetailFragment} representing
+ * album details.
  */
-
 @AndroidEntryPoint
 class AlbumListFragment : Fragment() {
 
     private val model: AlbumViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
-    private var _binding: FragmentAlbumListBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentAlbumListBinding
+    private lateinit var onContextClickListener: View.OnContextClickListener
+    private lateinit var onClickListener: View.OnClickListener
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
@@ -44,7 +42,7 @@ class AlbumListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentAlbumListBinding.inflate(inflater, container, false)
+        binding = FragmentAlbumListBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)?.supportActionBar!!.setShowHideAnimationEnabled(false)
         (activity as AppCompatActivity?)?.supportActionBar!!.show()
         return binding.root
@@ -55,24 +53,25 @@ class AlbumListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListener()
-
         val recyclerView: RecyclerView = binding.albumsList
+        setupRecyclerView(recyclerView, onClickListener, onContextClickListener)
+    }
 
-        /** Click Listener to trigger navigation based on if you have
-         * a single pane layout or two pane layout
-         */
-        val onClickListener = View.OnClickListener { itemView ->
+    /**
+     * Init all listener of this fragment
+     */
+    private fun initListener() {
+        binding.albumsTryAgain.setOnClickListener {
+            binding.albumsTryAgain.visibility = View.GONE
+            binding.albumsLoader.visibility = View.VISIBLE
+            model.getAlbums()
+        }
+        onClickListener = View.OnClickListener { itemView ->
             val item = itemView.tag as Album
             model.select(item)
             itemView.findNavController().navigate(R.id.show_item_detail)
         }
-
-        /**
-         * Context click listener to handle Right click events
-         * from mice and trackpad input to provide a more native
-         * experience on larger screen devices
-         */
-        val onContextClickListener = View.OnContextClickListener { v ->
+        onContextClickListener = View.OnContextClickListener { v ->
             val item = v.tag as Album
             Toast.makeText(
                 v.context,
@@ -80,15 +79,6 @@ class AlbumListFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
             true
-        }
-        setupRecyclerView(recyclerView, onClickListener, onContextClickListener)
-    }
-
-    private fun initListener() {
-        binding.albumsTryAgain.setOnClickListener {
-            binding.albumsTryAgain.visibility = View.GONE
-            binding.albumsLoader.visibility = View.VISIBLE
-            model.getAlbums()
         }
     }
 
@@ -111,10 +101,4 @@ class AlbumListFragment : Fragment() {
         }
     }
 
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

@@ -27,11 +27,7 @@ class AlbumDetailFragment : Fragment() {
 
     private val model: AlbumViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
-    private var _binding: FragmentAlbumDetailBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentAlbumDetailBinding
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
@@ -39,9 +35,9 @@ class AlbumDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
-        binding.itemAlbumPhotos.layoutManager = GridLayoutManager(binding.itemAlbumPhotos.context, 2)
-        binding.detailToolbar.setNavigationOnClickListener {
+        binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
+        binding.albumDetailPhotos.layoutManager = GridLayoutManager(binding.albumDetailPhotos.context, 2)
+        binding.albumDetailToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
 
@@ -49,18 +45,13 @@ class AlbumDetailFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar!!.hide()
 
         model.select.observe(viewLifecycleOwner) { album ->
-            binding.toolbarLayout.title = album.title
+            binding.albumDetailToolbarLayout.title = album.title
             Glide.with(this)
                 .load(album.banner)
-                .into(binding.appbarBanner)
-            binding.itemAlbumPhotos.adapter = AlbumDetailAdapter(binding.itemAlbumPhotos.context, album.photos)
+                .into(binding.albumDetailAppbarBanner)
+            binding.albumDetailPhotos.adapter = AlbumDetailAdapter(binding.albumDetailPhotos.context, album.photos)
         }
 
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

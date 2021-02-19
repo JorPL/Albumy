@@ -37,8 +37,8 @@ class AlbumListAdapter(
     override fun getItemCount() = values.size
 
     inner class ViewHolder(binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.idText
-        val contentView: TextView = binding.content
+        val idView: TextView = binding.albumId
+        val contentView: TextView = binding.albumContent
     }
 
 }
