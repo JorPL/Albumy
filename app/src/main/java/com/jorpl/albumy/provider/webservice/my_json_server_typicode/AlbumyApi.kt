@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface AlbumyApi {
 
-    @GET("posts")
+    @GET("albums")
     suspend fun getAlbums(): List<Album>
 
 }
