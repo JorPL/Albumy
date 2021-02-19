@@ -1,5 +1,5 @@
 object Versions {
-    const val gradle = "7.0.0-alpha07"
+    const val gradle = "4.1.2"
     const val kotlin = "1.4.21"
     const val appcompat = "1.2.0"
     const val constraintLayout = "2.0.4"
