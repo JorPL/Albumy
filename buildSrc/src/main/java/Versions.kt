@@ -10,4 +10,5 @@ object Versions {
     const val hilt = "2.32-alpha"
     const val hilt_navigation = "1.0.0-alpha03"
     const val okhttp = "4.9.0"
+    const val glide = "4.12.0"
 }

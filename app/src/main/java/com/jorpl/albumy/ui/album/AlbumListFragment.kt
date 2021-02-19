@@ -17,7 +17,7 @@ import com.jorpl.albumy.R
 import com.jorpl.albumy.databinding.FragmentAlbumListBinding
 import com.jorpl.albumy.databinding.ItemAlbumBinding
 import com.jorpl.albumy.models.Album
-import com.jorpl.albumy.viewmodel.AlbumViewModel
+import com.jorpl.albumy.view_model.AlbumViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

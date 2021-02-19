@@ -52,4 +52,6 @@ dependencies {
     implementation(Dependencies.Hilt.core)
     implementation(Dependencies.Hilt.navigation)
     kapt(Dependencies.Hilt.compiler)
+    implementation(Dependencies.Glide.core)
+    kapt(Dependencies.Glide.compiler)
 }

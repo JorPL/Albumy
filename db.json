@@ -1,7 +1,43 @@
 {
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
+  "albums": [
+    {
+      "id": 1,
+      "title": "Computer",
+      "author": "Jennifer I.",
+      "banner": "https://cdn.pixabay.com/photo/2014/12/15/14/05/home-office-569153__340.jpg",
+      "photos" : [
+        "https://cdn.pixabay.com/photo/2020/04/18/20/01/background-5060836__340.jpg",
+        "https://cdn.pixabay.com/photo/2014/05/03/01/03/laptop-336704__340.jpg",
+        "https://cdn.pixabay.com/photo/2016/06/25/12/52/laptop-1478822__340.jpg",
+        "https://cdn.pixabay.com/photo/2015/09/05/22/33/office-925806__340.jpg",
+        "https://cdn.pixabay.com/photo/2017/05/12/08/29/coffee-2306471__340.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Nature",
+      "author": "Stephen O.",
+      "banner": "https://cdn.pixabay.com/photo/2017/07/24/12/43/schrecksee-2534484__340.jpg",
+      "photos" : [
+        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
+        "https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014__340.jpg",
+        "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg",
+        "https://cdn.pixabay.com/photo/2018/04/16/16/16/sunset-3325080__340.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Colors",
+      "author": "Justin K.",
+      "banner": "https://cdn.pixabay.com/photo/2013/07/25/13/01/stones-167089__340.jpg",
+      "photos" : [
+        "https://cdn.pixabay.com/photo/2017/08/30/12/45/girl-2696947__340.jpg",
+        "https://cdn.pixabay.com/photo/2017/07/03/20/17/abstract-2468874__340.jpg",
+        "https://cdn.pixabay.com/photo/2018/07/04/23/17/soap-bubbles-3517247__340.jpg",
+        "https://cdn.pixabay.com/photo/2014/09/19/12/30/pencils-452238__340.jpg",
+        "https://cdn.pixabay.com/photo/2017/05/11/19/44/fruit-2305192__340.jpg",
+        "https://cdn.pixabay.com/photo/2016/10/22/20/52/balloons-1761634__340.jpg"
+      ]
+    }
   ]
 }

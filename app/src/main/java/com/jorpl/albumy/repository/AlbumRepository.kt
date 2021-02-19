@@ -8,6 +8,11 @@ class AlbumRepository @Inject constructor(
     private val api: AlbumyApi
 ) {
 
+    /**
+     * Get albums from webservice
+     *
+     * @return list of [Album]
+     */
     suspend fun getAlbums(): List<Album> {
         return api.getAlbums()
     }

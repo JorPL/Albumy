@@ -7,24 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import com.bumptech.glide.Glide
 import com.jorpl.albumy.R
 import com.jorpl.albumy.databinding.FragmentAlbumDetailBinding
-import com.jorpl.albumy.databinding.FragmentAlbumListBinding
-import com.jorpl.albumy.viewmodel.AlbumViewModel
+import com.jorpl.albumy.view_model.AlbumViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * A fragment representing a single Item detail screen.
- * This fragment is either contained in a [AlbumListFragment]
- * in two-pane mode (on larger screen devices) or self-contained
- * on handsets.
+ * A fragment representing a single Album detail screen.
  */
 @AndroidEntryPoint
 class AlbumDetailFragment : Fragment() {
 
     private val model: AlbumViewModel by hiltNavGraphViewModels(R.id.nav_graph)
-
-    lateinit var itemDetailTextView: TextView
 
     private var _binding: FragmentAlbumDetailBinding? = null
 
@@ -41,10 +36,10 @@ class AlbumDetailFragment : Fragment() {
         val rootView = binding.root
 
         model.select.observe(viewLifecycleOwner) { album ->
-            binding.toolbarLayout?.title = album.title
-
-            itemDetailTextView = binding.itemDetail
-            itemDetailTextView.text = album.title
+            binding.toolbarLayout.title = album.title
+            binding.itemDetail.text = album.title
+            Glide.with(this)
+                .load(album.banner)
         }
 
         return rootView

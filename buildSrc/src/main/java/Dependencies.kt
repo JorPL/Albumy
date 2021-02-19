@@ -39,4 +39,9 @@ object Dependencies{
         const val navigation = "androidx.hilt:hilt-navigation-fragment:${Versions.hilt_navigation}"
     }
 
+    object Glide {
+        const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
+        const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.jorpl.albumy.viewmodel
+package com.jorpl.albumy.view_model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +10,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel shared between AlbumDetailFragment & AlbumListFragment
+ *
+ * @property albumRepository
+ */
 @HiltViewModel
 class AlbumViewModel @Inject constructor(
     private val albumRepository: AlbumRepository
@@ -25,6 +30,11 @@ class AlbumViewModel @Inject constructor(
         }
     }
 
+    /**
+     * To call when album selected to notify all observers
+     *
+     * @param item album selected
+     */
     fun select(item: Album) {
         select.value = item
     }
