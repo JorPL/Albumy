@@ -42,7 +42,7 @@ class AlbumViewModel @Inject constructor(
      */
     fun getAlbums() {
         viewModelScope.launch {
-            _albums.value = albumRepository.getAlbums()
+            _albums.value = albumRepository.getAlbums().sortedBy { it.title }
         }
     }
 
