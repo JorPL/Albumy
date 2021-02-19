@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface AlbumyApi {
 
-    @GET("https://my-json-server.typicode.com/typicode/demo/posts")
+    @GET("posts")
     suspend fun getAlbums(): List<Album>
 
 }
