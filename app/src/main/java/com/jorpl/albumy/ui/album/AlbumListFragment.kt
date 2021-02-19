@@ -78,9 +78,9 @@ class AlbumListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ViewCompat.addOnUnhandledKeyEventListener(view, unhandledKeyEventListenerCompat)
+        initListener()
 
-        val recyclerView: RecyclerView = binding.itemList
+        val recyclerView: RecyclerView = binding.albumsList
 
         /** Click Listener to trigger navigation based on if you have
          * a single pane layout or two pane layout
@@ -108,17 +108,30 @@ class AlbumListFragment : Fragment() {
         setupRecyclerView(recyclerView, onClickListener, onContextClickListener)
     }
 
+    private fun initListener() {
+        binding.albumsTryAgain.setOnClickListener {
+            binding.albumsTryAgain.visibility = View.GONE
+            binding.albumsLoader.visibility = View.VISIBLE
+            model.getAlbums()
+        }
+    }
+
     private fun setupRecyclerView(
         recyclerView: RecyclerView,
         onClickListener: View.OnClickListener,
         onContextClickListener: View.OnContextClickListener
     ) {
         model.albums.observe(viewLifecycleOwner) {
-            recyclerView.adapter = SimpleItemRecyclerViewAdapter(
-                it,
-                onClickListener,
-                onContextClickListener
-            )
+            binding.albumsLoader.visibility = View.GONE
+            if (it.isEmpty()) {
+                binding.albumsTryAgain.visibility = View.VISIBLE
+            } else {
+                recyclerView.adapter = SimpleItemRecyclerViewAdapter(
+                    it,
+                    onClickListener,
+                    onContextClickListener
+                )
+            }
         }
     }
 

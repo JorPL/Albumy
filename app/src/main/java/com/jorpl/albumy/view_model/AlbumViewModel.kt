@@ -25,9 +25,7 @@ class AlbumViewModel @Inject constructor(
     val select = MutableLiveData<Album>()
 
     init {
-        viewModelScope.launch {
-            _albums.value = albumRepository.getAlbums()
-        }
+        getAlbums()
     }
 
     /**
@@ -37,6 +35,15 @@ class AlbumViewModel @Inject constructor(
      */
     fun select(item: Album) {
         select.value = item
+    }
+
+    /**
+     * Get albums from [AlbumRepository] and notify observers
+     */
+    fun getAlbums() {
+        viewModelScope.launch {
+            _albums.value = albumRepository.getAlbums()
+        }
     }
 
 }

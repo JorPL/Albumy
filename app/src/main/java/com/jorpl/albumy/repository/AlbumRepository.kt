@@ -14,7 +14,11 @@ class AlbumRepository @Inject constructor(
      * @return list of [Album]
      */
     suspend fun getAlbums(): List<Album> {
-        return api.getAlbums()
+        return try {
+            api.getAlbums()
+        } catch (t: Throwable) {
+            listOf()
+        }
     }
 
 }

@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/item_detail_fragment"
-        android:name="com.jorpl.albumy.ui.album.AlbumDetailFragment"
+        android:name="com.jorpl.albumy.ui.album.detail.AlbumDetailFragment"
         android:label="Album"
         tools:layout="@layout/fragment_album_detail"/>
 </navigation>
